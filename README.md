@@ -1,5 +1,4 @@
-# varnish-alpine
-Varnish container on alpine
+# Varnish on alpine
 
 Based on this [blog post](https://kruyt.org/varnish-kuberenets/).
 
