@@ -338,7 +338,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example-ingress
-  namespace: forterro
+  namespace: mynamespace
 
 spec:
   rules:
