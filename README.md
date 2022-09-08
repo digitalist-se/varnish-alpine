@@ -3,6 +3,8 @@ Varnish container on alpine
 
 ## Configurable variables
 
+
+
 | ENV variable | default value |
 | --- | --- |
 | VARNISH_VERSION | 7.1.1-r0 |
@@ -11,6 +13,8 @@ Varnish container on alpine
 | CACHE_SIZE | 128m |
 | SECRET_FILE | /etc/varnish/secret |
 | VCL_CONFIG | /etc/varnish/default.vcl |
+
+`VARNISH_VERSION` is only valid when building the image.
 
 ## Example for Kubernetes deployment
 
