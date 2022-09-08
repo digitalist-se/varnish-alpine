@@ -110,7 +110,7 @@ data:
     import std;
 
     backend one_dev {
-            .host = "my-site-svc";
+            .host = "my-site1-svc";
             .port = "80";
             .first_byte_timeout = 30s;
             .between_bytes_timeout = 30s;
@@ -118,7 +118,7 @@ data:
     }
 
     backend two_dev {
-            .host = "service-name2";
+            .host = "my-site1-svc";
             .port = "80";
             .first_byte_timeout = 30s;
             .between_bytes_timeout = 30s;
@@ -330,4 +330,44 @@ data:
 
 
 ```
+
+Then you need to setup so that the ingress goes to varnish:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: forterro
+
+spec:
+  rules:
+    - host: mysite1.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: varnish-svc
+                port: 
+                  number: 80
+            path: /      
+            pathType: Prefix
+
+    - host: mysite2.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: varnish-svc
+                port: 
+                  number: 80
+            path: /      
+            pathType: Prefix
+
+
+```
+
+
+
+
 
