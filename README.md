@@ -2,6 +2,10 @@
 
 Based on this [blog post](https://kruyt.org/varnish-kuberenets/).
 
+## Docker Hub
+
+[Image published on Docker Hub](https://hub.docker.com/r/digitalist/varnish-alpine)
+
 ## Configurable variables
 
 
