@@ -1,18 +1,19 @@
 # varnish-alpine
 Varnish container on alpine
 
-## Configurable variables
+Based on this [blog post](https://kruyt.org/varnish-kuberenets/).
 
+## Configurable variables
 
 
 | ENV variable | default value |
 | --- | --- |
-| VARNISH_VERSION | 7.1.1-r0 |
-| VARNISH_PORT | 80 |
-| VARNISHD_PARAMS | '-p default_ttl=3600 -p default_grace=3600' |
-| CACHE_SIZE | 128m |
-| SECRET_FILE | /etc/varnish/secret |
-| VCL_CONFIG | /etc/varnish/default.vcl |
+| `VARNISH_VERSION` | 7.1.1-r0 |
+| `VARNISH_PORT` | 80 |
+| `VARNISHD_PARAMS` | '-p default_ttl=3600 -p default_grace=3600' |
+| `CACHE_SIZE` | 128m |
+| `SECRET_FILE` | /etc/varnish/secret |
+| `VCL_CONFIG` | /etc/varnish/default.vcl |
 
 `VARNISH_VERSION` is only valid when building the image.
 
@@ -370,8 +371,3 @@ spec:
 
 
 ```
-
-
-
-
-
