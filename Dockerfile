@@ -9,7 +9,7 @@ ENV VARNISH_VERSION=7.1.1-r0 \
 
 RUN apk add --update varnish=$VARNISH_VERSION && rm -rf /var/cache/apk/*
 
-EXPOSE $VARNISH_POR
+EXPOSE $VARNISH_PORT
 
 COPY default.vcl /etc/varnish/default.vcl
 COPY dummysecret /etc/varnish/secret
