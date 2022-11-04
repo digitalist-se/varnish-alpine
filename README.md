@@ -18,7 +18,9 @@ Based on this [blog post](https://kruyt.org/varnish-kuberenets/).
 | `SECRET_FILE` | /etc/varnish/secret |
 | `VCL_CONFIG` | /etc/varnish/default.vcl |
 
-`VARNISH_VERSION` is only valid when building the image.
+`VARNISH_VERSION` is only valid when building the image. And is, and this is how alpine works,
+the same version as the current supported by alpine, when version breaks, it's because a new
+version has been published.
 
 ## Example for Kubernetes deployment
 
@@ -76,12 +78,12 @@ spec:
       containers:
       - name: varnish
         resources:
-          limits: 
+          limits:
             memory: 1024Mi
             cpu: 850m
           requests:
             memory: 256Mi
-            cpu: 10m 
+            cpu: 10m
         image: digitalist/varnish-alpine:latest
         imagePullPolicy: Always
         env:
@@ -158,7 +160,7 @@ data:
 
         # Local  BANS and PURGES come in on port 80. They MUST come before AUTH and the HTTPS redirect
 
-        
+
         # Only allow PURGE requests from IP addresses in the 'purge' ACL.
         if (req.method == "PURGE") {
            # if (!client.ip ~ purge) {
@@ -187,25 +189,25 @@ data:
         }
 
 
-        # Redirect anything else to HTTPS. Nginx sets "X-Forwarded-Proto"    
+        # Redirect anything else to HTTPS. Nginx sets "X-Forwarded-Proto"
 
         if (req.http.X-Forwarded-Proto == "https") {
             set req.http.X-Forwarded-For = req.http.X-Real-IP;
         } else {
             return(synth(750, "https://" + req.http.Host + req.url));
         }
-        
+
         ### Domain redirects here
-        
+
         # IF request for outlook auto-configure: 404 it rite nau!
         if (req.url == "/autodiscover/autodiscover.xml" ) {
             return(synth(404, "Not Found" ));
-        }    
+        }
 
-      
+
         # If we do not unset this, varnish will always pass through the cache
         unset req.http.Authorization;
- 
+
         if (req.url ~ "\.(mp3|mp4)$") {
             return (pass);
         }
@@ -292,7 +294,7 @@ data:
         else {
             set resp.http.Cache-Tags = "MISS";
         }
-        
+
         # Possible fix for problem with duplicates of the x-content-type-options
         if (resp.http.X-Content-Type-Options && resp.http.X-Content-Type-Options == "nosniff") {
           unset resp.http.X-Content-Type-Options;
@@ -356,9 +358,9 @@ spec:
           - backend:
               service:
                 name: varnish-svc
-                port: 
+                port:
                   number: 80
-            path: /      
+            path: /
             pathType: Prefix
 
     - host: mysite2.dev
@@ -367,9 +369,9 @@ spec:
           - backend:
               service:
                 name: varnish-svc
-                port: 
+                port:
                   number: 80
-            path: /      
+            path: /
             pathType: Prefix
 
 
