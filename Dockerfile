@@ -1,6 +1,6 @@
 FROM alpine:3
 LABEL maintainer="mikke.schiren™digitalist.se"
-ENV VARNISH_VERSION=7.2.0-r0 \
+ENV VARNISH_VERSION=7.1.1-r0 \
     VARNISH_PORT=80 \
     VARNISHD_PARAMS='-p default_ttl=3600 -p default_grace=3600' \
     CACHE_SIZE=128m \
